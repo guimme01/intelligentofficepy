@@ -78,6 +78,8 @@ class IntelligentOffice:
         else:
             if not self.check_quadrant_occupancy(self.INFRARED_PIN1):
                 GPIO.output(self.LED_PIN, GPIO.LOW)
+            else:
+                GPIO.output(self.LED_PIN, GPIO.HIGH)
 
 
 
