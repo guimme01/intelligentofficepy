@@ -60,7 +60,11 @@ class IntelligentOffice:
         return GPIO.input(pin)
 
     def manage_blinds_based_on_time(self) -> None:
-        GPIO.output(self.SERVO_PIN, GPIO.HIGH)
+        day = self.rtc.read_datetime()
+        if day.hour == 8:
+            GPIO.output(self.SERVO_PIN, GPIO.HIGH)
+        elif day.hour == 20:
+            GPIO.output(self.SERVO_PIN, GPIO.LOW)
 
     def manage_light_level(self) -> None:
         # To be implemented
