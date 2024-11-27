@@ -61,6 +61,8 @@ class IntelligentOffice:
 
     def manage_blinds_based_on_time(self) -> None:
         day = self.rtc.read_datetime()
+        if day.isoweekday() == 7 or day.isoweekday() == 6:
+            return
         if day.hour == 8:
             GPIO.output(self.SERVO_PIN, GPIO.HIGH)
         elif day.hour == 20:
