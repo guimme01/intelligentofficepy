@@ -69,8 +69,12 @@ class IntelligentOffice:
             GPIO.output(self.SERVO_PIN, GPIO.LOW)
 
     def manage_light_level(self) -> None:
-        self.light_on = True
-        GPIO.output(self.LED_PIN, GPIO.HIGH)
+        if self.light_on and self.ambient_light_sensor.lux > 550:
+            self.light_on = False
+            GPIO.output(self.LED_PIN, GPIO.LOW)
+        elif self.ambient_light_sensor.lux < 500:
+            self.light_on = True
+            GPIO.output(self.LED_PIN, GPIO.HIGH)
 
 
 
