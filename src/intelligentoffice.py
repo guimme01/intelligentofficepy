@@ -85,6 +85,7 @@ class IntelligentOffice:
 
     def monitor_air_quality(self) -> None:
         if GPIO.input(self.GAS_PIN):
+            self.buzzer_on = True
             GPIO.output(self.BUZZER_PIN, GPIO.HIGH)
 
     def change_servo_angle(self, duty_cycle):
