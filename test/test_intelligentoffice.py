@@ -33,3 +33,12 @@ class TestIntelligentOffice(unittest.TestCase):
         i.manage_blinds_based_on_time()
 
         mock_blinds.assert_called_once_with(i.SERVO_PIN, GPIO.HIGH)
+
+    @patch.object(SDL_DS3231, "read_datetime")
+    @patch.object(GPIO, "output")
+    def test_manage_blinds_based_on_time_blinds_fully_closed(self, mock_blinds: Mock, mock_datetime: Mock):
+        mock_datetime.return_value = datetime(2024, 11, 27, 20, 00, 00)
+        i = IntelligentOffice()
+        i.manage_blinds_based_on_time()
+
+        mock_blinds.assert_called_once_with(i.SERVO_PIN, GPIO.LOW)
