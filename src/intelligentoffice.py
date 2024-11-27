@@ -69,8 +69,9 @@ class IntelligentOffice:
             GPIO.output(self.SERVO_PIN, GPIO.LOW)
 
     def manage_light_level(self) -> None:
-        # To be implemented
-        pass
+        self.light_on = True
+        GPIO.output(self.LED_PIN, GPIO.HIGH)
+
 
 
     def monitor_air_quality(self) -> None:
