@@ -90,3 +90,11 @@ class TestIntelligentOffice(unittest.TestCase):
         i.manage_light_level()
         mock_output.assert_called_once_with(i.LED_PIN, GPIO.HIGH)
 
+    @patch.object(GPIO, "input")
+    @patch.object(GPIO, "output")
+    def test_monitor_air_quality_detect(self, mock_output: Mock, mock_input: Mock):
+           mock_input.return_value = True
+           i = IntelligentOffice()
+           i.monitor_air_quality()
+           mock_output.assert_called_once_with(i.BUZZER_PIN, GPIO.HIGH)
+
