@@ -1,4 +1,5 @@
 import time
+from logging import raiseExceptions
 
 DEPLOYMENT = False  # This variable is to understand whether you are deploying on the actual hardware
 
@@ -54,6 +55,8 @@ class IntelligentOffice:
         self.buzzer_on = False
 
     def check_quadrant_occupancy(self, pin: int) -> bool:
+        if pin != self.INFRARED_PIN1 & pin != self.INFRARED_PIN2 & pin != self.INFRARED_PIN3 & pin != self.INFRARED_PIN4 :
+            raise IntelligentOfficeError("Invalid pin")
         return GPIO.input(pin)
 
     def manage_blinds_based_on_time(self) -> None:
