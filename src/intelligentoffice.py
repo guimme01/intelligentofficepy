@@ -75,6 +75,9 @@ class IntelligentOffice:
         elif self.ambient_light_sensor.lux < 500:
             self.light_on = True
             GPIO.output(self.LED_PIN, GPIO.HIGH)
+        else:
+            if not self.check_quadrant_occupancy(self.INFRARED_PIN1):
+                GPIO.output(self.LED_PIN, GPIO.LOW)
 
 
 
