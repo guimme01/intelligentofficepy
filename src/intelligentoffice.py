@@ -60,8 +60,7 @@ class IntelligentOffice:
         return GPIO.input(pin)
 
     def manage_blinds_based_on_time(self) -> None:
-        # To be implemented
-        pass
+        GPIO.output(self.SERVO_PIN, GPIO.HIGH)
 
     def manage_light_level(self) -> None:
         # To be implemented
