@@ -63,9 +63,10 @@ class TestIntelligentOffice(unittest.TestCase):
 
     @patch.object(GPIO, "output")
     @patch.object(VEML7700, 'lux', new_callable = PropertyMock)
-    def test_manage_light_level_lights_turned_off(self, mock_lux: Mock):
+    def test_manage_light_level_lights_turned_off(self, mock_lux: Mock, mock_output: Mock):
         mock_lux.return_value = 551
         i = IntelligentOffice()
+        i.light_on = True
         i.manage_light_level()
-        mock_lux.assert_called_once_with(i.LED_PIN, GPIO.LOW)
+        mock_output.assert_called_once_with(i.LED_PIN, GPIO.LOW)
 
